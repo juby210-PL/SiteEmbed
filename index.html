@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Juby210's Embed Generator</title>
+        <meta charset="utf-8">
+        <meta name="og:site_name" content="Juby210's Embed Generator">
+        <meta property="og:title" content="Generate your embed!" />
+        <meta property="og:description" content="Generate your embed, no selfbots and plugins!">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://mrchest.tk/css/bootstrap.min.css" />
+        <style>
+            body {
+                background-color: #2C2F33;
+                font-family: 'Open Sans', sans-serif;
+            }
+            #content {
+                text-align: center;
+                color: #ffffff;
+            }
+            .button {
+                background-color: #7289DA;
+                border: none;
+                border-radius: 6px;
+                color: white;
+                padding: 8px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-bottom: 5px;
+                cursor: pointer;
+            }
+            .button:hover {
+                background-color: #8089DA;
+            }
+            .form-control {
+                width: 700px;
+                margin-bottom: 6px;
+            }
+            #preview {
+                width: 440;
+                height: 100;
+                background-color: #2f3136;
+                border: 1px solid hsla(0,0%,80.4%,.3);
+                text-align: left;
+            }
+            .smalltitle {
+                color: #87909c !important;
+                display: inline-block;
+                font-size: 13;
+                font-weight: 400;
+                margin: 4px;
+            }
+            .title {
+                color: #0096cf !important;
+                display: inline-block;
+                font-size: 17;
+                margin-left: 4px;
+            }
+            .description {
+                color: rgba(79,83,91);
+                font-size: 15;
+                font-weight: 400;
+                letter-spacing: 0;
+                line-height: 1rem;
+                white-space: pre-line;
+                margin-left: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <h1>Juby210's Embed Generator</h1><br>
+            <center><input type="text" class="form-control" id="SmallTitle" placeholder="Small Title">
+            <input type="text" class="form-control" id="Title" placeholder="Title">
+            <input type="text" class="form-control" id="Description" placeholder="Description">
+            <input type="text" class="form-control" id="Image" placeholder="Optional Image Link"></center>
+            <button class="button" onclick="gen()">Generate link</button>
+            <br><br><p>Preview (BETA):</p><br>
+            <center><div id="preview">
+                <p id="st" class="smalltitle">Small Title</p><br>
+                <p id="t" class="title">Title</p><br>
+                <p id="d" class="description">Description</p>
+            </div></center>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="sc.js" ></script>
+    </body>
+</html>
