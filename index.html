@@ -36,10 +36,10 @@
                 width: 700px;
                 margin-bottom: 6px;
             }
-            #preview {
+            #dpreview {
                 width: 440;
                 height: 100;
-                background-color: #2f3136;
+                background-color: #2a2a2a;
                 border: 1px solid hsla(0,0%,80.4%,.3);
                 text-align: left;
             }
@@ -51,7 +51,7 @@
                 margin: 4px;
             }
             .title {
-                color: #0096cf !important;
+                color: #0096cf;
                 display: inline-block;
                 font-size: 17;
                 margin-left: 4px;
@@ -65,21 +65,33 @@
                 white-space: pre-line;
                 margin-left: 4px;
             }
+            #mpreview {
+                width: 440;
+                height: 100;
+                background-color: #2a2a2a;
+                border: 1px solid hsla(0,0%,80.4%,.3);
+                text-align: left;
+            }
         </style>
     </head>
     <body>
         <div id="content">
             <h1>Juby210's Embed Generator</h1><br>
-            <center><input type="text" class="form-control" id="SmallTitle" placeholder="Small Title">
+            <center><input type="text" class="form-control" id="SmallTitle" placeholder="Small Title [Discord only]">
             <input type="text" class="form-control" id="Title" placeholder="Title">
             <input type="text" class="form-control" id="Description" placeholder="Description">
             <input type="text" class="form-control" id="Image" placeholder="Optional Image Link"></center>
             <button class="button" onclick="gen()">Generate link</button>
-            <br><br><p>Preview (BETA):</p><br>
-            <center><div id="preview">
+            <br><br><p>Preview (BETA, no images):</p><br><p>Discord:</p>
+            <center><div id="dpreview">
                 <p id="st" class="smalltitle">Small Title</p><br>
                 <p id="t" class="title">Title</p><br>
                 <p id="d" class="description">Description</p>
+            </div>
+            <p>Messenger:</p>
+            <div id="mpreview">
+                <p id="mt" class="title" style="color: #dfdfdf">Title</p><br><br>
+                <p id="md" class="description" style="color: #dfdfdf">Description</p>
             </div></center><br><br>
             <p>&copy; Juby210 2018 - <a href="https://github.com/juby210-PL/SiteEmbed" target="_blank">Source code</a> - <a href="https://github.com/juby210-PL/SiteEmbed/wiki" target="_blank">Docs</a></p>
         </div>

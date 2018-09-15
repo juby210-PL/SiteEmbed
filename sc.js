@@ -4,7 +4,11 @@ function gen() {
         url: `gen.php?st=${$('#SmallTitle').val()}&t=${$('#Title').val()}&d=${$('#Description').val()}&i=${$('#Image').val()}`,
         context: document.body,
         success: function(data) {
-            prompt("Your embed link:", data);
+            if(data.startsWith("Error")) {
+                alert(data);
+            } else {
+                prompt("Your embed link:", data);
+            }
         }
     });
 }
@@ -18,7 +22,11 @@ $('#SmallTitle').on('propertychange input', function (e) {
     }
 
     if (valueChanged) {
-        $('#st').html($('#SmallTitle').val());
+        if($('#SmallTitle').val() == "") {
+            $('#st').html("Small Title");
+        } else {
+            $('#st').html($('#SmallTitle').val());
+        }
     }
 });
 
@@ -31,7 +39,13 @@ $('#Title').on('propertychange input', function (e) {
     }
 
     if (valueChanged) {
-        $('#t').html($('#Title').val());
+        if($('#Title').val() == "") {
+            $('#t').html("Title");
+            $('#mt').html("Title");
+        } else {
+            $('#t').html($('#Title').val());
+            $('#mt').html($('#Title').val());
+        }
     }
 });
 
@@ -44,6 +58,12 @@ $('#Description').on('propertychange input', function (e) {
     }
 
     if (valueChanged) {
-        $('#d').html($('#Description').val());
+        if($('#Description').val() == "") {
+            $('#d').html("Description");
+            $('#md').html("Description");
+        } else {
+            $('#d').html($('#Description').val());
+            $('#md').html($('#Description').val());
+        }
     }
 });

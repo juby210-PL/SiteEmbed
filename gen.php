@@ -2,6 +2,16 @@
     $url = "https://juby210.com.pl/embed/f/";
     
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
+    session_start();
+
+    if (time() < $_SESSION['time'] + 10){
+        echo "Error: Session timeout is 10 sec (antispam)";
+        die();
+    } else {
+        session_destroy();
+        session_start();
+        $_SESSION['time'] = time();
+    }
     if(empty($_GET["t"])) {
         echo "Missing Title";
         die();
@@ -33,26 +43,18 @@
     }
 
     function GetTxt($st, $t, $d, $i) {
-        if(empty($st)) {
-            if(empty($d) && empty($i)) {
-                return '<html><head><meta charset="utf-8"><meta property="og:title" content="'.$t.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-            } else if (empty($i)) {
-                return '<html><head><meta charset="utf-8"><meta property="og:title" content="'.$t.'"><meta property="og:description" content="'.$d.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-            } else {
-                return '<html><head><meta charset="utf-8"><meta property="og:title" content="'.$t.'"><meta property="og:description" content="'.$d.'"><meta property="og:image" content="'.$i.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-            }
+        if(!empty($st)) {
+            $st = '<meta name="og:site_name" content="'.$st.'">';
         }
-        if(empty($d)) {
-            if(empty($i)) {
-                return '<html><head><meta charset="utf-8"><meta name="og:site_name" content="'.$st.'"><meta property="og:title" content="'.$t.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-            } else {
-                return '<html><head><meta charset="utf-8"><meta name="og:site_name" content="'.$st.'"><meta property="og:title" content="'.$t.'"><meta property="og:image" content="'.$i.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-            }
+        if(!empty($t)) {
+            $t = '<meta property="og:title" content="'.$t.'"><meta name="twitter:title" content="'.$t.'">';
         }
-        if(empty($i)) {
-            return '<html><head><meta charset="utf-8"><meta name="og:site_name" content="'.$st.'"><meta property="og:title" content="'.$t.'"><meta property="og:description" content="'.$d.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
-        } else {
-            return '<html><head><meta charset="utf-8"><meta name="og:site_name" content="'.$st.'"><meta property="og:title" content="'.$t.'"><meta property="og:description" content="'.$d.'"><meta property="og:image" content="'.$i.'"></head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
+        if(!empty($d)) {
+            $d = '<meta property="og:description" content="'.$d.'"><meta name="twitter:description" content="'.$d.'">';
         }
+        if(!empty($i)) {
+            $i = '<meta property="og:image" content="'.$i.'"><meta name="twitter:image" content="'.$i.'">';
+        }
+        return '<html><head><meta charset="utf-8">'.$st.$t.$d.$i.'</head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
     }
 ?>
