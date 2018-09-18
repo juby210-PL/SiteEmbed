@@ -1,7 +1,7 @@
 function gen() {
     if($('#Title').val() == "") return alert("Title is required");
     $.ajax({
-        url: `gen.php?st=${$('#SmallTitle').val()}&t=${$('#Title').val()}&d=${$('#Description').val()}&i=${$('#Image').val()}`,
+        url: `gen.php?st=${$('#SmallTitle').val()}&t=${$('#Title').val()}&d=${$('#Description').val()}&i=${$('#Image').val()}&c=${$('#Color').val()}`,
         context: document.body,
         success: function(data) {
             if(data.startsWith("Error")) {
