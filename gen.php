@@ -56,7 +56,7 @@
             $i = '<meta property="og:image" content="'.$i.'"><meta name="twitter:image" content="'.$i.'">';
         }
         if(!empty($c)) {
-            $c = '<meta name="theme-color" content="'.$c.'">';
+            $c = '<meta name="theme-color" content="#'.$c.'">';
         }
         return '<html><head><meta charset="utf-8">'.$st.$t.$d.$i.$c.'</head><body onload="home()"><script>function home() {window.location = "../index.html";}</script></body></html>';
     }
