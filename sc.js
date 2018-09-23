@@ -13,6 +13,18 @@ function gen() {
     });
 }
 
+function gen2() {
+    if($('#Title').val() == "") return alert("Title is required");
+    $.ajax({
+        url: `gen.php?method=raw&st=${$('#SmallTitle').val()}&t=${$('#Title').val()}&d=${$('#Description').val()}&i=${$('#Image').val()}&c=${$('#Color').val()}`,
+        context: document.body,
+        success: function(data) {
+            $("#code").html(data);
+            $("#code").css("visibility", "visible");
+        }
+    });
+}
+
 $('#SmallTitle').on('propertychange input', function (e) {
     var valueChanged = false;
     if (e.type=='propertychange') {

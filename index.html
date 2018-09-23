@@ -72,6 +72,11 @@
                 border: 1px solid hsla(0,0%,80.4%,.3);
                 text-align: left;
             }
+            #code {
+                background-color: #dfdfdf;
+                color: black;
+                padding: 15px;
+            }
         </style>
     </head>
     <body>
@@ -82,7 +87,8 @@
             <input type="text" class="form-control" id="Description" placeholder="Description">
             <input type="text" class="form-control" id="Image" placeholder="Optional Image Link">
             <input type="text" class="form-control" id="Color" placeholder="Optional Color [eg. 0000FF]"></center>
-            <button class="button" onclick="gen()">Generate link</button>
+            <button class="button" onclick="gen()">Generate link</button> <button class="button" onclick="gen2()">Code for your site</button>
+            <center><div id="code" style="visibility: hidden"></div></center>
             <br><br><p>Preview (BETA, no images):</p><br><p>Discord:</p>
             <center><div id="dpreview">
                 <p id="st" class="smalltitle">Small Title</p><br>
@@ -97,6 +103,6 @@
             <p>&copy; Juby210 2018 - <a href="https://github.com/juby210-PL/SiteEmbed" target="_blank">Source code</a> - <a href="https://github.com/juby210-PL/SiteEmbed/wiki" target="_blank">Docs</a></p>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="sc.js" ></script>
+        <script type="text/javascript" src="sc.js" ></script>
     </body>
 </html>
