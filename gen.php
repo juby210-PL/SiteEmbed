@@ -1,23 +1,20 @@
 <?php 
+    // Config //
     $url = "https://juby210.com.pl/embed/f/";
+    $ratelimit = 10; // in secs | RATELIMIT IS GLOBAL!
+    $file_rl = true;
+    $text_rl = false;
+    $raw_rl = false;
+    // End Config //
     
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
-    session_start();
-
-    if (time() < $_SESSION['time'] + 10){
-        echo "Error: Session timeout is 10 sec (antispam)";
-        die();
-    } else {
-        session_destroy();
-        session_start();
-        $_SESSION['time'] = time();
-    }
     if(empty($_GET["t"])) {
         echo "Missing Title";
         die();
     }
 
     if(empty($_GET['method']) || $_GET['method'] == "file") {
+        if($file_rl) timeout($ratelimit);
         $random = RandomString(9);
         $file = fopen("f/".$random.".html", "w");
         fwrite($file, GetTxt($_GET['st'], $_GET['t'], $_GET['d'], $_GET['i'], $_GET['c']));
@@ -25,9 +22,11 @@
         echo $url.$random.".html";
         die();
     } else if ($_GET['method'] == "text") {
+        if($text_rl) timeout($ratelimit);
         echo str_replace('<body onload="home()"><script>function home() {window.location = "../index.html";}</script></body>', '<body><center><h3>This embed was created by <a href="https://github.com/juby210-PL/SiteEmbed">Juby210`s Embed Generator</a></h3></center></body>', GetTxt($_GET['st'], $_GET['t'], $_GET['d'], $_GET['i'], $_GET['c']));
         die();
     } else if ($_GET['method'] == "raw") {
+        if($raw_rl) timeout($ratelimit);
         echo nl2br(htmlspecialchars(GetRaw($_GET['st'], $_GET['t'], $_GET['d'], $_GET['i'], $_GET['c'])));
         die();
     } else {
@@ -81,5 +80,17 @@
             $c = '<meta name="theme-color" content="#'.$c.'">';
         }
         return $st.$t.$d.$i.$c;
+    }
+
+    function timeout($ratelimit) {
+        $filetime = explode("\n", file_get_contents("time.txt"));
+        if (time() < $filetime[0] + $ratelimit){
+            echo "Error: Global timeout: Try again in ".($filetime[0] + $ratelimit - time())." sec";
+            die();
+        } else {
+            $filetime2 = fopen("time.txt", "w");
+            fwrite($filetime2, time());
+            fclose($filetime2);
+        }
     }
 ?>
